@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="DepthChart:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/DepthChart_jar</output-path>
-    <root id="archive" name="DepthChart.jar">
-      <element id="module-output" name="DepthChart" />
-    </root>
-  </artifact>
-</component>
