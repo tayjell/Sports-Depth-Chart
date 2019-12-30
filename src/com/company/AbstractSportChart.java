@@ -11,7 +11,7 @@ abstract class AbstractSportChart {
 
     //Methods
     protected void addPlayerToDepthChart(Player player, String position, int position_depth){
-          if(positionsMap.get(position) != null) { //Check first if position in applicable for sport
+          if(positionsMap.get(position) != null) { //Check first if position is applicable for sport
               if (positionsMap.get(position).isEmpty() == true || position_depth > positionsMap.get(position).size()) {
                   if (positionsMap.get(position).contains(player) == false) {
                       positionsMap.get(position).add(player); //Add player to end if depth chart for that pos is empty pos > size of array
@@ -28,26 +28,33 @@ abstract class AbstractSportChart {
 
     //If no position depth is specified then add to end of the depth chart
     protected void addPlayerToDepthChart(Player player, String position){
-        positionsMap.get(position).add(player);
+        if(positionsMap.get(position) != null) { //Check first if position is applicable for sport
+            positionsMap.get(position).add(player);
+        }else {
+            System.out.println("Position not correct for this sport");
+        }
     }
 
     //Function to remove payer from depth chart
     protected void removePlayerFromDepthChart(Player player, String position){
         int removeIndex = 0;
         boolean okToRemove = false;
-        //find the index of the player we are removing
-        for(int i = 0; i < positionsMap.get(position).size(); i++) {
-            if (positionsMap.get(position).get(i).getId() == player.getId()){
-                //Store the index
-                removeIndex = i;
-                okToRemove = true;
+        if(positionsMap.get(position) != null) { //Check first if position is applicable for sport
+            //find the index of the player we are removing
+            for (int i = 0; i < positionsMap.get(position).size(); i++) {
+                if (positionsMap.get(position).get(i).getId() == player.getId()) {
+                    //Store the index
+                    removeIndex = i;
+                    okToRemove = true;
+                }
             }
-        }
 
 
-
-        if (okToRemove == true){
-            positionsMap.get(position).remove(removeIndex);
+            if (okToRemove == true) {
+                positionsMap.get(position).remove(removeIndex);
+            }
+        }else {
+            System.out.println("Position not correct for this sport");
         }
     }
 
